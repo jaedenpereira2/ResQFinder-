@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResQFinder | Emergency Alert Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i> ResQFinder
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('map') }}">Maps</a></li>
+                    <li><a href="{{url_for('about')}}">About Us</a></li>
+                </ul>
+            </nav>
+            <p class="tagline">Your Emergency Assistance Partner</p>
+        </div>
+    </header>
+        
+    <div class="control-panel">
+        <div class="action-container">
+            
+            
+            <!-- Search bar moved below hospital button -->
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for a location...">
+                <button id="search-btn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            <button id="emergency-btn" class="btn emergency-btn">
+                <i class="fas fa-exclamation-triangle"></i> Emergency Alert
+            </button>
+            <button id="find-hospital-btn" class="btn find-hospital-btn">
+                <i class="fas fa-hospital"></i> Find Hospitals
+            </button>
+            
+            <button id="find-police-btn" class="btn find-police-btn">
+                <i class="fas fa-shield-alt"></i> Find Police
+            </button>
+            <button id="find-fire-btn" class="btn find-fire-btn">
+                <i class="fas fa-fire-extinguisher"></i> Find Fire Stations
+            </button>
+            <button id="find-ambulance-btn" class="btn find-ambulance-btn">
+                <i class="fas fa-ambulance"></i> Find Ambulances
+            </button>
+            <button id="distress-btn" class="btn distress-btn">
+                <i class="fas fa-hands-helping"></i> Send Distress Signal
+            </button>
+        </div>
+    </div>
+    
+    <div class="map-container">
+        <div id="map"></div>
+        <div class="maharashtra-label">
+            <!-- <i class="fas fa-map-marker-alt"></i> Maharashtra, India -->
+        </div>
+        
+        <div class="hospital-list-container" id="hospital-list-container">
+            <div class="hospital-list-header">
+                <h3><i class="fas fa-hospital"></i> Nearby Hospitals</h3>
+                <button class="close-list" id="close-hospital-list">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="hospital-list" id="hospital-list">
+                <!-- Hospital list will be populated here -->
+            </ul>
+        </div>
+
+        <div class="service-list-container" id="police-list-container">
+            <div class="service-list-header">
+                <h3><i class="fas fa-shield-alt"></i> Nearby Police Stations</h3>
+                <button class="close-list" id="close-police-list">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="service-list" id="police-list">
+                <!-- Police stations list will be populated here -->
+            </ul>
+        </div>
+
+        <div class="service-list-container" id="fire-list-container">
+            <div class="service-list-header">
+                <h3><i class="fas fa-fire-extinguisher"></i> Nearby Fire Stations</h3>
+                <button class="close-list" id="close-fire-list">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="service-list" id="fire-list">
+                <!-- Fire stations list will be populated here -->
+            </ul>
+        </div>
+
+        <div class="service-list-container" id="ambulance-list-container">
+            <div class="service-list-header">
+                <h3><i class="fas fa-ambulance"></i> Nearby Ambulances</h3>
+                <button class="close-list" id="close-ambulance-list">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="service-list" id="ambulance-list">
+                <!-- Ambulances list will be populated here -->
+            </ul>
+        </div>
+    </div>
+    
+    <div class="status-bar" id="status-bar">
+        <i class="fas fa-info-circle"></i>
+        <span id="status-message">Ready to assist you in emergencies. Click on the buttons to find nearby emergency services.</span>
+    </div>
+    
+    <div class="help-btn" id="help-btn">
+        <i class="fas fa-question"></i>
+    </div>
+    
+    <div class="modal-overlay" id="user-guide-modal">
+        <div class="user-guide-modal">
+            <div class="modal-header">
+                <h2>Welcome to ResQFinder</h2>
+                <p>Your emergency medical services locator in Maharashtra, India</p>
+                <button class="close-modal" id="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon feature-emergency">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3>Emergency Alert</h3>
+                        <p>Trigger an emergency alert that will be visible on the map. This helps emergency services locate you quickly.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon feature-hospital">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <h3>Find Hospitals</h3>
+                        <p>Locate the nearest hospitals around your current location. View details, get directions, and contact information.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon feature-police">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Find Police Stations</h3>
+                        <p>Locate the nearest police stations for security emergencies and assistance.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon feature-fire">
+                            <i class="fas fa-fire-extinguisher"></i>
+                        </div>
+                        <h3>Find Fire Stations</h3>
+                        <p>Locate the nearest fire stations for fire emergencies and rescue services.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon feature-ambulance">
+                            <i class="fas fa-ambulance"></i>
+                        </div>
+                        <h3>Find Ambulances</h3>
+                        <p>Locate available ambulances near your location for medical transportation.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon feature-distress">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3>Distress Signal</h3>
+                        <p>Send a distress signal with your location to emergency services and your emergency contacts.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon feature-search">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Location Search</h3>
+                        <p>Search for specific locations on the map to find emergency services in that area.</p>
+                    </div>
+
+                    <div class="service-list-container" id="police-list-container">
+                        <div class="service-list-header">
+                            <h3><i class="fas fa-shield-alt"></i> Nearby Police Stations</h3>
+                            <button class="close-list" id="close-police-list">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <ul class="service-list" id="police-list">
+                            <!-- Police stations list will be populated here -->
+                        </ul>
+                    </div>
+                    
+                    <!-- Update the fire station list container -->
+                    <div class="service-list-container" id="fire-list-container">
+                        <div class="service-list-header">
+                            <h3><i class="fas fa-fire-extinguisher"></i> Nearby Fire Stations</h3>
+                            <button class="close-list" id="close-fire-list">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <ul class="service-list" id="fire-list">
+                            <!-- Fire stations list will be populated here -->
+                        </ul>
+                    </div>
+                    
+                    <!-- Update the ambulance list container -->
+                    <div class="service-list-container" id="ambulance-list-container">
+                        <div class="service-list-header">
+                            <h3><i class="fas fa-ambulance"></i> Nearby Ambulances</h3>
+                            <button class="close-list" id="close-ambulance-list">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <ul class="service-list" id="ambulance-list">
+                            <!-- Ambulances list will be populated here -->
+                        </ul>
+                    </div>
+                                        
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p>© 2023 ResQFinder - Emergency Medical Services Locator</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>

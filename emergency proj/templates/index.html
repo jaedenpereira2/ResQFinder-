@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResQFinder - Emergency Assistance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="login-circle" onclick="location.href='login.html'" title="Login">
+        <i class="fas fa-user"></i>
+    </div>
+    <!-- <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('map') }}">Maps</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+    </nav>
+    <header class="header">
+        <div class="logo"><i class="fas fa-heartbeat"></i>ResQFinder</div>
+        <p>Your Emergency Assistance Partner</p>
+        
+    </header> -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i> ResQFinder
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('map') }}">Maps</a></li>
+                    <li><a href="{{url_for('about')}}">About Us</a></li>
+                </ul>
+            </nav>
+            <p class="tagline">Your Emergency Assistance Partner</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <h1>Welcome to ResQFinder</h1>
+        <h2>Basic Emergency Assistance</h2>
+        <p>Learn essential skills to assist in critical emergency situations. These life-saving techniques can make a significant difference while waiting for professional medical help to arrive.</p>
+        
+        <ul class="emergency-list">
+            <li>
+                <i class="fas fa-heart"></i> Performing CPR
+                <div class="hover-video-container">
+                    <!-- <video class="hover-video" muted autoplay loop playsinline>
+                        <source src="cpr_demo.mp4" type="video/mp4">
+                    </video> -->
+                    <p class="video-description">CPR can save lives by maintaining blood flow to the brain and heart until medical help arrives. <br>
+                        Steps to Take During Sudden Cardiac Arrest <br> 
+
+                        1. Call for Help – Dial 102 immediately. <br>  
+                        2. Start CPR – Perform chest compressions, even if only hands-only CPR.  <br>
+                        3. Use an AED (if available – Follow the device instructions to deliver a shock.  <br>
+                        4. Continue CPR– Maintain chest compressions until medical help arrives.   <br>
+                        5. Defibrillation by Emergency Personnel – If no AED was used, paramedics will use a defibrillator.  <br>
+                        6. Medication Administration– Antiarrhythmic drugs may be given through an IV to stabilize heart rhythm.   br
+                        7. Hospital Care– Further treatment is needed to recover and prevent future cardiac issues.  <br>
+                        </p>
+                </div>
+            </li>
+        
+            <li>
+                <i class="fas fa-tint"></i> Handling severe bleeding
+                <div class="hover-video-container">
+                    <!-- <video class="hover-video" muted autoplay loop playsinline>
+                        <source src="bleeding_demo.mp4" type="video/mp4">
+                    </video> -->
+                    <p class="video-description">Steps to Handle Severe Bleeding
+                        Call for Help  <br>
+                        1. Dial 102 immediately. Apply Direct Pressure  <br>
+                        2. Use a clean cloth or bandage to press firmly on the wound. Elevate the Wounded Area <br> 
+                        3. If possible, raise the injury above heart level to slow bleeding. Use a Tourniquet (if necessary) <br> 
+                        4. If bleeding is uncontrollable, apply a tourniquet above the wound.Maintain Pressure <br> 
+                        5. Keep applying firm pressure until emergency help arrives. Monitor for Shock <br> 
+                        6. Look for signs like pale skin, rapid breathing, or confusion and keep the person warm.</p>
+                </div>
+            </li>
+        
+            <li>
+                <i class="fas fa-car-crash"></i> Dealing with accidents
+                <div class="hover-video-container">
+                    <!-- <video class="hover-video" muted autoplay loop playsinline>
+                        <source src="accident_demo.mp4" type="video/mp4">
+                    </video> -->
+
+                    <p class="video-description">Steps to Deal with Accidents
+                        Assess the Situation <br> 
+                        1. Ensure your safety before approaching the injured person. Call for Help <br> 
+                        2. Dial 102 or emergency services immediately. <br>
+                        3. Check for Responsiveness – If unconscious, check breathing and pulse. <br>
+                        4. Provide Basic First Aid <br>
+                        - Severe bleeding – Apply direct pressure and elevate the wound. <br>
+                        - Fractures – Immobilize the area and avoid movement. <br> 
+                        - Burns – Cool with water (not ice) and cover with a clean cloth. <br>
+                        - Choking – Perform the Heimlich maneuver if needed. <br>
+                        5.Perform CPR (if necessary) – If the person is unresponsive and breathing, start CPR. <br>
+                        6. Prevent Shock – Keep the person warm and reassure them until help arrives. <br>
+                        7. Do Not Move the Injured – Unless there is immediate danger, avoid moving them to prevent further injury.</p> <br>
+                </div>
+            </li>
+        
+            <li>
+                <i class="fas fa-lungs"></i> Helping someone choking
+                <div class="hover-video-container">
+                    <!-- <video class="hover-video" muted autoplay loop playsinline>
+                        <source src="choking_demo.mp4" type="video/mp4">
+                    </video> -->
+                    <p class="video-description">Steps to Help Someone Choking <br>
+                        For Adults & Children (Above 1 Year) <br>
+                        1. Assess the Situation – If they can cough or speak, encourage them to keep coughing. <br>
+                        2. Call for Help – Dial 911 if the person cannot breathe, speak, or is turning blue. <br>
+                        3. Perform the Heimlich Maneuver: <br>
+                        - Stand behind the person and wrap your arms around their waist. <br>
+                        - Make a fist and place it above their navel. <br>
+                        - Grab your fist with the other hand and deliver quick, upward thrusts. <br>
+                        - Repeat until the object is expelled or the person becomes unconscious. <br>
+                        For Infants (Below 1 Year) <br>
+                        1. Lay the baby face-down on your forearm, supporting their head. <br>
+                        2. Give 5 back blows – Use the heel of your hand to deliver firm blows between the shoulder blades. <br>
+                        3. Turn the baby over and give 5 chest thrusts – Use two fingers to press the chest. <br>
+                        4. Repeat until the object is removed or the baby becomes unresponsive. <br>
+                        If the Person Becomes Unconscious <br>
+                        - Start CPR – Perform chest compressions and rescue breaths until help arrives. <br>
+                        The Heimlich maneuver can dislodge objects blocking the airway in choking emergencies. <br> </p>
+                </div>
+            </li>
+        
+            <li>
+                <i class="fas fa-brain"></i> Recognizing a stroke
+                <div class="hover-video-container">
+                    <!-- <video class="hover-video" muted autoplay loop playsinline>
+                        <source src="stroke_demo.mp4" type="video/mp4">
+                    </video> -->
+                    <p class="video-description">Steps to Recognize and Respond to a Stroke <br>
+                        Use the FAST Method: <br>
+                        
+                        - Face – Ask the person to smile. Does one side droop? <br>
+                        - Arms – Ask them to raise both arms. Does one drift downward? <br>
+                        - Speech – Ask them to repeat a simple sentence. Is their speech slurred? <br>
+                        - Time – If you notice any symptoms, call 911 immediately. <br>
+                        2. Keep the Person Calm – Help them sit or lie down comfortably. <br>
+                        3. Do Not Give Food or Drink – They may have difficulty swallowing. <br>
+                        4. Monitor Their Condition – Note the time symptoms started and watch for worsening signs. <br>
+                        5. Perform CPR (if necessary) – If they become unconscious and stop breathing, start CPR. <br> </p> 
+                </div>
+            </li>
+        </ul>
+        
+        <!-- <div class="video-container">
+            <a href="https://www.youtube.com/watch?v=xyANahuhGs0">
+                <img src="image.png" alt="Health and safety risk assessment and management">
+            </a>
+        </div> -->
+        <h2>DOs and DON'Ts in an Emergency</h2>
+        <ul class="dos-donts">
+            <li><strong>DO:</strong> Stay calm and assess the situation.</li>
+            <li><strong>DO:</strong> Call emergency services immediately.</li>
+            <li><strong>DO:</strong> Provide first aid only if trained.</li>
+            <li><strong>DO:</strong> Comfort the injured person and keep them conscious if possible.</li>
+            <li><strong>DON'T:</strong> Move an injured person unnecessarily unless there's an immediate danger.</li>
+            <li><strong>DON'T:</strong> Ignore safety protocols.</li>
+            <li><strong>DON'T:</strong> Delay calling for professional help.</li>
+        </ul>
+        
+        <p><strong>Disclaimer:</strong> The information provided here is for educational purposes only. Always seek professional medical assistance in an emergency.</p>
+        
+        <p>Remember: In case of a real emergency, always call your local emergency number first.</p>
+
+    </div>
+    
+    <h2>Emergency Services & Accident-Prone Areas</h2>
+    <div id="map"></div>
+
+    <footer>
+        <p>&copy; 2023 ResQFinder - Emergency Assistance. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

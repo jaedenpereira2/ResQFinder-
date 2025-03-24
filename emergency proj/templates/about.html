@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Emergency Locator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i> ResQFinder
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('map') }}">Maps</a></li>
+                    <li><a href="{{ url_for('about') }}">About Us</a></li>
+                </ul>
+            </nav>
+            <p class="tagline">Your Emergency Assistance Partner</p>
+        </div>
+    </header>
+    <section id="about-container">
+        <div id="about-mission">
+            <h2>Our Mission</h2>
+            <p>
+                The **Emergency Locator** is designed to enhance safety by providing real-time
+                location-based insights and emergency support. Our goal is to empower individuals
+                and communities by offering a **reliable, data-driven solution** for navigating
+                safe zones and emergency response.
+            </p>
+        </div>
+        <div id="about-what-we-do">
+            <h2>What We Do</h2>
+            <p>
+                Using advanced geospatial analysis, our platform maps **crime hotspots** and
+                **safety zones** to assist parents, guardians, and emergency responders.
+                Whether you’re planning a route or need urgent assistance, our system ensures 
+                that you have the information necessary to make informed decisions.
+            </p>
+        </div>
+        <div id="about-why-choose">
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li><strong>Real-time data:</strong> Up-to-date safety insights for better decision-making.</li>
+                <li><strong>User-friendly interface:</strong> Simple, interactive, and easy to use.</li>
+                <li><strong>Community-driven:</strong> Data sourced from verified reports & law enforcement.</li>
+                <li><strong>Privacy-focused:</strong> We prioritize user security with encrypted data handling.</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 ResQFinder - Emergency Assistance. All rights reserved.</p>
+    </footer>
+</body>
+</html>
