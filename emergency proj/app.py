@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, jsonify
 import sqlite3
 import os
 
+
 app = Flask(__name__)
 
 # Function to initialize the database
